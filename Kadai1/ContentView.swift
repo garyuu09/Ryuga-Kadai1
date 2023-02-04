@@ -8,57 +8,41 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var number1:Int = 0
-    @State var number2:Int = 0
-    @State var number3:Int = 0
-    @State var number4:Int = 0
-    @State var number5:Int = 0
+    @State var number1:String = ""
+    @State var number2:String = ""
+    @State var number3:String = ""
+    @State var number4:String = ""
+    @State var number5:String = ""
     @State var result = "Label"
 
 
     var body: some View {
         HStack{
             VStack(alignment : .leading) {
-                TextField("", value: $number1, formatter: NumberFormatter())
-                    .font(.title)
-                    .frame(height:40)
-                    .frame(width: 100)
-                    .keyboardType(.numberPad)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
 
+                TextField("", text: $number1)
+                    .customTextFieldStyle()
 
-                TextField("", value: $number2, formatter: NumberFormatter())
-                    .font(.title)
-                    .frame(height:40)
-                    .frame(width: 100)
-                    .keyboardType(.numberPad)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                TextField("", text: $number2)
+                    .customTextFieldStyle()
 
-                TextField("", value: $number3, formatter: NumberFormatter())
-                    .font(.title)
-                    .frame(height:40)
-                    .frame(width: 100)
-                    .keyboardType(.numberPad)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                TextField("", text: $number3)
+                    .customTextFieldStyle()
 
-                TextField("", value: $number4, formatter: NumberFormatter())
-                    .font(.title)
-                    .frame(height:40)
-                    .frame(width: 100)
-                    .keyboardType(.numberPad)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                TextField("", text: $number4)
+                    .customTextFieldStyle()
 
-                TextField("", value: $number5, formatter: NumberFormatter())
-                    .font(.title)
-                    .frame(height:40)
-                    .frame(width: 100)
-                    .keyboardType(.numberPad)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-
+                TextField("", text: $number5)
+                    .customTextFieldStyle()
 
                 Button(action: {
-                    result = String(number1 + number2 + number3 + number4 + number5)
+                    let num1 = Int(number1) ?? 0
+                    let num2 = Int(number2) ?? 0
+                    let num3 = Int(number3) ?? 0
+                    let num4 = Int(number4) ?? 0
+                    let num5 = Int(number5) ?? 0
 
+                    result = String(num1 + num2 + num3 + num4 + num5)
                 }){
                     Text("Button")
                         .font(.title)
@@ -70,6 +54,16 @@ struct ContentView: View {
             Spacer()
         }
         .padding()
+    }
+}
+
+extension TextField {
+    func customTextFieldStyle() -> some View {
+        self
+            .font(.title)
+            .frame(width:100, height:40)
+            .keyboardType(.numberPad)
+            .textFieldStyle(RoundedBorderTextFieldStyle())
     }
 }
 
