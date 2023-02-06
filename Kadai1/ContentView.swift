@@ -21,19 +21,10 @@ struct ContentView: View {
             VStack(alignment : .leading) {
 
                 TextField("", text: $number1)
-                    .customTextFieldStyle()
-
                 TextField("", text: $number2)
-                    .customTextFieldStyle()
-
                 TextField("", text: $number3)
-                    .customTextFieldStyle()
-
                 TextField("", text: $number4)
-                    .customTextFieldStyle()
-
                 TextField("", text: $number5)
-                    .customTextFieldStyle()
 
                 Button(action: {
                     let num1 = Int(number1) ?? 0
@@ -51,15 +42,17 @@ struct ContentView: View {
                     .font(.title)
                 Spacer()
             }
+            .modifier(CustomTextFieldStyle())
+
             Spacer()
         }
         .padding()
     }
 }
 
-extension TextField {
-    func customTextFieldStyle() -> some View {
-        self
+struct CustomTextFieldStyle: ViewModifier {
+    func body(content: Content) -> some View {
+        content
             .font(.title)
             .frame(width:100, height:40)
             .keyboardType(.numberPad)
