@@ -18,12 +18,13 @@ struct ContentView: View {
 
     var body: some View {
         HStack{
-            VStack(alignment : .leading) {
-                TextField("", text: $number1)
-                TextField("", text: $number2)
-                TextField("", text: $number3)
-                TextField("", text: $number4)
-                TextField("", text: $number5)
+            VStack{
+                    TextField("", text: $number1)
+                    TextField("", text: $number2)
+                    TextField("", text: $number3)
+                    TextField("", text: $number4)
+                    TextField("", text: $number5)
+                /// test
 
                 Button(action: {
                     let num1 = Int(number1) ?? 0
@@ -52,7 +53,7 @@ struct customTextFieldStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(.title)
-            .frame(width:100, height:40)
+            .frame(width:100)
             .keyboardType(.numberPad)
             .textFieldStyle(RoundedBorderTextFieldStyle())
     }
